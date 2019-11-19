@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>msg</param-name>
+        <param-value>Message from any servlet.</param-value>
+    </context-param>
+    <filter>
+        <filter-name>SecretFilter</filter-name>
+        <filter-class>pl.polsl.lab3.SecretFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>SecretFilter</filter-name>
+        <url-pattern>/restricted/*</url-pattern>
+    </filter-mapping>
+    <servlet>
+        <servlet-name>FirstServlet</servlet-name>
+        <servlet-class>pl.polsl.lab3.FirstServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SecondServlet</servlet-name>
+        <servlet-class>pl.polsl.lab3.SecondServlet</servlet-class>
+        <init-param>
+            <param-name>msg1</param-name>
+            <param-value>Name cannot be empty!</param-value>
+        </init-param>
+        <init-param>
+            <param-name>msg2</param-name>
+            <param-value>Age must be a nonnegative integer!</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FirstServlet</servlet-name>
+        <url-pattern>/FirstServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SecondServlet</servlet-name>
+        <url-pattern>/SecondServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+</web-app>
